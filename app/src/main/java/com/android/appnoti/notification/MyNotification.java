@@ -32,13 +32,11 @@ public class MyNotification extends NotificationListenerService {
 
         String packageName = sbn.getPackageName();
         CharSequence ticket = sbn.getNotification().tickerText;
-        Log.e(TAG,"------name---"+packageName+"---"+ticket.toString());
+        Log.i(TAG,"------name---"+packageName+"---"+ticket.toString());
         if(!Utils.isEmpty(packageName) && !Utils.isEmpty(ticket.toString())){
             if(packageName.equals(Constants.QQ_PACKAGE_NAME)){  //QQ消息
                 sendMsgBroadcast(packageName,ticket.toString());
-                Log.e(TAG,"------name--qq-"+packageName+"---"+ticket.toString());
             }else if( packageName.equals(Constants.WECHAT_PACKAGE_NAME)){   //微信消息
-                Log.e(TAG,"------name--wechat-"+packageName+"---"+ticket.toString());
                 sendMsgBroadcast(packageName,ticket.toString());
             }
 
@@ -46,9 +44,8 @@ public class MyNotification extends NotificationListenerService {
         }
 
     }
-
+    //发送广播
     private void sendMsgBroadcast(String packageName, String s) {
-        Log.e(TAG,"------name--332-"+packageName+"---"+s);
         Intent ints = new Intent(ACTION);
         Bundle bundle = new Bundle();
         bundle.putString("packname",packageName);
